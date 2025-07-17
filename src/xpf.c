@@ -606,12 +606,17 @@ void xpf_stop(void)
 	if (gXPF.osVersion) free(gXPF.osVersion);
 	if (gXPF.kernelInfoPlist) free(gXPF.kernelInfoPlist);
 
-	XPFItem *item = gXPF.firstItem;
-	while (item) {
-		XPFItem *curItem = item;
-		item = item->nextItem;
-		free(curItem);
-	}
-	
-	gXPF = (struct s_XPF){ 0 };
+        XPFItem *item = gXPF.firstItem;
+        while (item) {
+                XPFItem *curItem = item;
+                item = item->nextItem;
+                free(curItem);
+        }
+
+        if (gXPFError) {
+                free(gXPFError);
+                gXPFError = NULL;
+        }
+
+        gXPF = (struct s_XPF){ 0 };
 }
