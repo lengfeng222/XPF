@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdbool.h>
 
 #include <choma/Fat.h>
 #include <choma/Util.h>
